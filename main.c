@@ -6,7 +6,7 @@
 //--------------------------------------------- UNIVERSIDADE DE BRASILIA - CAMPUS FGA -------------------------------------------//
 //                                                   estrutura de dados e algoritmos                                             //
 // GRUPO 10:
-// Joao Pedro Alves Machado - 212028197
+// Joao Pedro Alves Machado - 212008197
 // Mayara Alves de OLiveira - 200025058         
 //-------------------------------------------------------------------------------------------------------------------------------//
 
