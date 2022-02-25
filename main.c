@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 //-------------------------------------------------------------------------------------------------------------------------------//
 //--------------------------------------------- UNIVERSIDADE DE BRASILIA - CAMPUS FGA -------------------------------------------//
@@ -10,10 +11,10 @@
 //-------------------------------------------------------------------------------------------------------------------------------//
 
 
-// Criando Menu de decisões
+// Criando Menu de decisÃµes
 
 int menu(){
-	char  localArchive[100];
+	char localArchive[100];
 	int length_palavra;
 	int maior_comprimento;
 	int qtde_palavra;
@@ -24,8 +25,8 @@ int menu(){
 	
 	int option = 0;
 	while(option != 5){
-		printf("---------------------------------------------------------------");
-		printf("------------------------------- Menu --------------------------\n");
+		printf("------------------------------------------------------");
+		printf("--------------------- Menu ----------------\n");
 		printf("Bem-Vindo ao menu de opções de avaliação do Trip Adivisor.");
 		printf("Insira a opção desejada: \n");
         printf("1 - Ler o dataset do Trip Adivisor.\n");
@@ -33,13 +34,13 @@ int menu(){
         printf("3 - Exibir TF-IDFs.\n");
         printf("4 - Exibir TF-IDF de uma Nota. Em ordem decrescente de valor de TF-IDF.\n");
         printf("5 - Sair\n");
-        printf("---------------------------------------------------------------\n");
+        printf("---------------------------------------------------------\n");
         scanf("%d",&option);
         
         // Criando modo leitura do data set//
 
         if(option==1){
-			printf("---------------------------------------------------------------");
+			printf("------------------------------------------------------\n");
         	printf("Por favor insira o nome do arquivo:\n");
         	scanf("%s", &localArchive);
         	printf("%s \n", &localArchive);
@@ -59,17 +60,17 @@ int menu(){
 
         	origin = fopen(localArchive, "r");
         	if(origin == NULL){
-        		printf("não foi possível acessar o arquivo.\n");
+        		printf("Não foi possível acessar o arquivo.\n");
 			}if(Nota1 == NULL){
-        		printf("não foi possível acessar o arquivo.\n");
+        		printf("Não foi possível acessar o arquivo.\n");
 			}if(Nota2 == NULL){
-        		printf("não foi possível acessar o arquivo.\n");
+        		printf("Não foi possível acessar o arquivo.\n");
 			}if(Nota3 == NULL){
-        		printf("não foi possível acessar o arquivo.\n");
+        		printf("Não foi possível acessar o arquivo.\n");
 			}if(Nota4 == NULL){
-        		printf("não foi possível acessar o arquivo.\n");
+        		printf("Não foi possível acessar o arquivo.\n");
 			}if(Nota5 == NULL){
-        		printf("não foi possível acessar o arquivo.\n");
+        		printf("Não foi possível acessar o arquivo.\n");
 			}
         	
 			char reader[1000000];
@@ -86,7 +87,7 @@ int menu(){
 			
 					pointer = strtok(NULL, ",");
 					review = *pointer;
-					//writing the information in the data;s
+					//escrever as informações nos dados
 					if(review=='1'){
 						fputs(reader, Nota1);
 						fputs("\n", Nota1);
@@ -110,7 +111,7 @@ int menu(){
 				}
 				i++;
 			}
-			//closing the open files.
+			//fechando os arquivos abertos.
 			fclose(origin);
 			fclose(Nota1);
             fclose(Nota2);
@@ -121,29 +122,98 @@ int menu(){
 		}
 		// Criando o gerador de vocabulário 
 		if(option == 2 ){
+			FILE *VocabularioCompleto;
+        	FILE *VocabularioSemRepeticoes;
+        	FILE *Texto;
+    
+    		char palavra[100000000];
+    		char localArquivo[100];
+   			printf("------------------------------------------------------\n");
+        	printf("Por favor insira o nome do arquivo:\n");
+        	scanf("%s", &localArquivo, palavra);
+        	printf("%s \n", &localArquivo);
+        	
+        	Texto  = fopen(localArquivo, "r");
+        	VocabularioCompleto = fopen("files/VocabularioCompleto.txt","w");
+		    VocabularioSemRepeticoes = fopen("files/VocabularioSemRepeticoes.txt","w");
+        	if(Texto == NULL){
+        		printf("Não foi possível acessar o arquivo.\n");
+			}if(VocabularioCompleto == NULL){
+        		printf("Não foi possível acessar o arquivo.\n");
+			}if(VocabularioSemRepeticoes == NULL){
+        		printf("Não foi possível acessar o arquivo.\n");
+        	}	
+
+			int lengthPalavra;
+			int maior_comprimento;
+			
+			 while(!feof(Texto))
+    	{   
+       		 // ler palavra por palavra
+        	fscanf(Texto,"%s",palavra);
+        	lengthPalavra = len(palavra); 
+
+       		 if(maior_comprimento < lengthPalavra){
+            maior_comprimento = lengthPalavra;
+        	}
+
+        	// pontuacao
+       		 void pontuacao(char *palavra,int *len)
 			{
-			printf("------Gerando vocabulário de palavras------ \n");
-            vocabularioCompleto = fopen("files/vocabularioCompleto.txt","w");
-            vocabularioSemRepeticoes= fopen("files/vocabularioSemRepeticoes.txt","w");
-            maior_comprimento = 0;
-            
-            // Abrindo csv e gerando vocabularios com e sem repeticao
-            documento = Arquivo_AbreLeitura("text.csv");
-			geraVocabularioCompleto(documento,vocabularioCompleto);
-			fclose(vocabularioCompleto);
-            vocabularioCompleto = fopen("files/vocabularioCompleto.txt","r"); // Abrindo para leitura//
+   		 	int i = 0;
+         	int aux;
+    	 	char pontuacao[4] = {',','.','"'};
 
 
-            printf("Por favor insira o número de palavras que deseja testar :");
-            scanf("%d",&lim);
-            geraArquivoSemRepeticao(vocabularioSemRepeticoes,vocabularioCompleto,lim);
+    		for(i = 0;i < 3;i++){
+        		if(palavra[*len-1] == pontuacao[i]){
+        	    palavra[strlen(palavra) - 1] = palavra[strlen(palavra)];
+       	     *len--;
+       			 }
+   			 }
+    
+    		for(i = 0;i < 4;i++)
+  			  {
+       		 if(palavra[0] == pontuacao[i]){
+         	   for(aux = 0 ; aux < *len ; aux++){
+                palavra[aux] = palavra[aux+1];
+      	      }
+        	    *len--;
+       			 }
+    			}
+				}
 
-            fclose(vocabularioCompleto);
-			fclose(vocabularioSemRepeticoes);
-            fclose(documento);
-            
+    		return 0;
+			}
+			// verifica se a string lida começa com números
+			int verifica_num(char *palavra){
+
+    		char num[11] = {'0','1','2','3','4','5','6','7','8','9'};
+
+   			 for(int i = 0 ; i < 11 ; i ++){
+        		if(palavra[0] == num[i])
+       		 {
+           	 return 1;
+       	 }
+   		 }
+    		return 0;
+			}
+
+        pontuacao(palavra,&lengthPalavra);
+
+       	 if(((length_palavra > 4) && (length_palavra <= 20)) && (verifica_num(palavra) == 0)){
+           	 fprintf(VocabularioCompleto,"%s\n",palavra);
+           	 qtde_palavra++;
+      			  }
+   			 }
+		}
+
+        	//fechando os arquivos abertos.
+			fclose(Texto);
+			fclose(VocabularioCompleto);
+            fclose(VocabularioSemRepeticoes);
         }
-		
+      	
 		}if(option == 3 ){
 	
 		}if(option == 4 ){
@@ -151,7 +221,9 @@ int menu(){
 		}if(option == 5 ){
 			printf("Programa encerrado!");
 		}
-}}
+	}
+}
+
 int main(int argc, char *argv[]) {
 	menu();
 return 0;
