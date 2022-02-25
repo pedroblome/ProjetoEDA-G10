@@ -11,10 +11,10 @@
 //-------------------------------------------------------------------------------------------------------------------------------//
 
 
-// Criando Menu de decisÃµes
+// Criando Menu de decisões
 
 int menu(){
-	char localArchive[100];
+	char  localArchive[100];
 	int length_palavra;
 	int maior_comprimento;
 	int qtde_palavra;
@@ -22,72 +22,71 @@ int menu(){
 	int qntd_voc;
 	int lim;
 	int lenString;
-	
+
 	int option = 0;
 	while(option != 5){
-		printf("------------------------------------------------------");
-		printf("--------------------- Menu ----------------\n");
-		printf("Bem-Vindo ao menu de opções de avaliação do Trip Adivisor.");
+		printf("---------------------------------------------------------------\n");
+		printf("------------------------------- Menu --------------------------\n");
+		printf("Bem-Vindo ao menu de opções de avaliação do Trip Adivisor.\n");
 		printf("Insira a opção desejada: \n");
         printf("1 - Ler o dataset do Trip Adivisor.\n");
         printf("2 - Gerar vocabulario.\n");
         printf("3 - Exibir TF-IDFs.\n");
         printf("4 - Exibir TF-IDF de uma Nota. Em ordem decrescente de valor de TF-IDF.\n");
         printf("5 - Sair\n");
-        printf("---------------------------------------------------------\n");
+        printf("---------------------------------------------------------------\n");
+        printf("Escolha :");
         scanf("%d",&option);
-        
-        // Criando modo leitura do data set//
+
 
         if(option==1){
-			printf("------------------------------------------------------\n");
-        	printf("Por favor insira o nome do arquivo:\n");
+        	printf("write the name of archive: ");
         	scanf("%s", &localArchive);
         	printf("%s \n", &localArchive);
-        	
+
         	FILE *origin;
         	FILE *Nota1;
         	FILE *Nota2;
         	FILE *Nota3;
         	FILE *Nota4;
         	FILE *Nota5;
-        	
+
             Nota1 = fopen("files/Nota1.txt","w");
 		    Nota2 = fopen("files/Nota2.txt","w");
 		    Nota3 = fopen("files/Nota3.txt","w");
 		    Nota4 = fopen("files/Nota4.txt","w");
 		    Nota5 = fopen("files/Nota5.txt","w");
-
         	origin = fopen(localArchive, "r");
         	if(origin == NULL){
-        		printf("Não foi possível acessar o arquivo.\n");
-			}if(Nota1 == NULL){
-        		printf("Não foi possível acessar o arquivo.\n");
-			}if(Nota2 == NULL){
-        		printf("Não foi possível acessar o arquivo.\n");
-			}if(Nota3 == NULL){
-        		printf("Não foi possível acessar o arquivo.\n");
-			}if(Nota4 == NULL){
-        		printf("Não foi possível acessar o arquivo.\n");
-			}if(Nota5 == NULL){
-        		printf("Não foi possível acessar o arquivo.\n");
+        		printf("wasnt possible to access the archive.\n");
 			}
-        	
+			if(Nota1 == NULL){
+        		printf("wasnt possible to access the archive.\n");
+			}if(Nota2 == NULL){
+        		printf("wasnt possible to access the archive.\n");
+			}if(Nota3 == NULL){
+        		printf("wasnt possible to access the archive.\n");
+			}if(Nota4 == NULL){
+        		printf("wasnt possible to access the archive.\n");
+			}if(Nota5 == NULL){
+        		printf("wasnt possible to access the archive.\n");
+			}
+
 			char reader[1000000];
 			char *pointer;
 			char line;
 			char review;
 			int i = 0;
-			
+
 			while(fgets(reader, 1000000, origin) != NULL){
 				if(i>0){
-				
+
 					pointer = strtok(reader, "\"");
 					line = *pointer ;
-			
+
 					pointer = strtok(NULL, ",");
 					review = *pointer;
-					//escrever as informações nos dados
+					//writing the information in the data;s
 					if(review=='1'){
 						fputs(reader, Nota1);
 						fputs("\n", Nota1);
@@ -111,122 +110,155 @@ int menu(){
 				}
 				i++;
 			}
-			//fechando os arquivos abertos.
+			//closing the open files.
 			fclose(origin);
 			fclose(Nota1);
             fclose(Nota2);
             fclose(Nota3);
             fclose(Nota4);
             fclose(Nota5);
-        	
+
+
+
+
 		}
-		// Criando o gerador de vocabulário 
 		if(option == 2 ){
-			FILE *VocabularioCompleto;
-        	FILE *VocabularioSemRepeticoes;
-        	FILE *Texto;
-    
-    		char palavra[100000000];
-    		char localArquivo[100];
-   			printf("------------------------------------------------------\n");
-        	printf("Por favor insira o nome do arquivo:\n");
-        	scanf("%s", &localArquivo, palavra);
-        	printf("%s \n", &localArquivo);
+			// criando arquivos de destino para cada vocabulario.
+			FILE *vocab1rep;
+        	FILE *vocab2rep;
+        	FILE *vocab3rep;
+        	FILE *vocab4rep;
+        	FILE *vocab5rep;
         	
-        	Texto  = fopen(localArquivo, "r");
-        	VocabularioCompleto = fopen("files/VocabularioCompleto.txt","w");
-		    VocabularioSemRepeticoes = fopen("files/VocabularioSemRepeticoes.txt","w");
-        	if(Texto == NULL){
-        		printf("Não foi possível acessar o arquivo.\n");
-			}if(VocabularioCompleto == NULL){
-        		printf("Não foi possível acessar o arquivo.\n");
-			}if(VocabularioSemRepeticoes == NULL){
-        		printf("Não foi possível acessar o arquivo.\n");
-        	}	
-
-			int lengthPalavra;
-			int maior_comprimento;
-			
-			 while(!feof(Texto))
-    	{   
-       		 // ler palavra por palavra
-        	fscanf(Texto,"%s",palavra);
-        	lengthPalavra = len(palavra); 
-
-       		 if(maior_comprimento < lengthPalavra){
-            maior_comprimento = lengthPalavra;
-        	}
-
-        	// pontuacao
-       		 void pontuacao(char *palavra,int *len)
-			{
-   		 	int i = 0;
-         	int aux;
-    	 	char pontuacao[4] = {',','.','"'};
-
-
-    		for(i = 0;i < 3;i++){
-        		if(palavra[*len-1] == pontuacao[i]){
-        	    palavra[strlen(palavra) - 1] = palavra[strlen(palavra)];
-       	     *len--;
-       			 }
-   			 }
-    
-    		for(i = 0;i < 4;i++)
-  			  {
-       		 if(palavra[0] == pontuacao[i]){
-         	   for(aux = 0 ; aux < *len ; aux++){
-                palavra[aux] = palavra[aux+1];
-      	      }
-        	    *len--;
-       			 }
-    			}
-				}
-
-    		return 0;
-			}
-			// verifica se a string lida começa com números
-			int verifica_num(char *palavra){
-
-    		char num[11] = {'0','1','2','3','4','5','6','7','8','9'};
-
-   			 for(int i = 0 ; i < 11 ; i ++){
-        		if(palavra[0] == num[i])
-       		 {
-           	 return 1;
-       	 }
-   		 }
-    		return 0;
-			}
-
-        pontuacao(palavra,&lengthPalavra);
-
-       	 if(((length_palavra > 4) && (length_palavra <= 20)) && (verifica_num(palavra) == 0)){
-           	 fprintf(VocabularioCompleto,"%s\n",palavra);
-           	 qtde_palavra++;
-      			  }
-   			 }
-		}
-
-        	//fechando os arquivos abertos.
-			fclose(Texto);
-			fclose(VocabularioCompleto);
-            fclose(VocabularioSemRepeticoes);
-        }
-      	
-		}if(option == 3 ){
-	
-		}if(option == 4 ){
+        	FILE *vocab1;
+        	FILE *vocab2;
+        	FILE *vocab3;
+        	FILE *vocab4;
+        	FILE *vocab5;
+        	
+        	FILE *Nota1;
+        	FILE *Nota2;
+        	FILE *Nota3;
+        	FILE *Nota4;
+        	FILE *Nota5;
+        	
+        	vocab1 = fopen("files/vocab1.txt","w");
+			vocab2 = fopen("files/vocab2.txt","w");
+		    vocab3 = fopen("files/vocab3.txt","w");
+		    vocab4 = fopen("files/vocab4.txt","w");
+		    vocab5 = fopen("files/vocab5.txt","w");
 		
+
+            vocab1rep = fopen("files/vocab1rep.txt","w");
+			vocab2rep = fopen("files/vocab2rep.txt","w");
+		    vocab3rep = fopen("files/vocab3rep.txt","w");
+		    vocab4rep = fopen("files/vocab4rep.txt","w");
+		    vocab5rep = fopen("files/vocab5rep.txt","w");
+		
+            Nota1 = fopen("files/Nota1.txt","r");
+		    Nota2 = fopen("files/Nota2.txt","r");
+		    Nota3 = fopen("files/Nota3.txt","r");
+		    Nota4 = fopen("files/Nota4.txt","r");
+		    Nota5 = fopen("files/Nota5.txt","r");
+			if(Nota1 == NULL){
+        		printf("wasnt possible to access the archive.\n");
+			}if(Nota2 == NULL){
+        		printf("wasnt possible to access the archive.\n");
+			}if(Nota3 == NULL){
+        		printf("wasnt possible to access the archive.\n");
+			}if(Nota4 == NULL){
+        		printf("wasnt possible to access the archive.\n");
+			}if(Nota5 == NULL){
+        		printf("wasnt possible to access the archive.\n");
+			}
+
+			char reader[0];
+			char *pointer;
+			char *pointer2;
+
+
+			while(fgets(reader, 100, Nota1) != NULL){
+				pointer=strtok(reader," ,.!?\"");
+				while(pointer){
+					if(strlen(pointer)>3){
+						fputs(pointer, vocab1rep);
+						fputs("\n", vocab1rep);
+					}
+					pointer = strtok(NULL," ,.!?\"");	
+				}
+			}
+			while(fgets(reader, 100, Nota2) != NULL){
+				pointer=strtok(reader," ,.!?\"");
+				while(pointer){
+					if(strlen(pointer)>3){
+						fputs(pointer, vocab2rep);
+						fputs("\n", vocab2rep);
+					}
+					
+					pointer = strtok(NULL," ,.!?\"");	
+				}
+			}
+			while(fgets(reader, 100, Nota3) != NULL){
+				pointer=strtok(reader," ,.!?\"");
+				while(pointer){
+					if(strlen(pointer)>3){
+						fputs(pointer, vocab3rep);
+						fputs("\n", vocab3rep);
+					}
+					pointer = strtok(NULL," ,.!?\"");	
+				}
+			}
+			while(fgets(reader, 100, Nota4) != NULL){
+				pointer=strtok(reader," ,.!?\"");
+				while(pointer){
+					if(strlen(pointer)>3){
+						fputs(pointer, vocab4rep);
+						fputs("\n", vocab4rep);
+					}
+					pointer = strtok(NULL," ,.!?\"");	
+				}
+			}
+			while(fgets(reader, 100, Nota5) != NULL){
+				pointer=strtok(reader," ,.!?\"");
+				while(pointer){
+					if(strlen(pointer)>3){
+						fputs(pointer, vocab5rep);
+						fputs("\n", vocab5rep);
+						
+					}
+					pointer = strtok(NULL," ,.!?\"");	
+				}
+			}
+			//closing the open files.
+			fclose(Nota1);
+            fclose(Nota2);
+            fclose(Nota3);
+            fclose(Nota4);
+            fclose(Nota5);
+            
+            fclose(vocab1rep);
+            fclose(vocab2rep);
+            fclose(vocab3rep);
+            fclose(vocab4rep);
+            fclose(vocab5rep);
+            
+            fclose(vocab1);
+            fclose(vocab2);
+            fclose(vocab3);
+            fclose(vocab4);
+            fclose(vocab5);
+            
+		}if(option == 3 ){
+
+		}if(option == 4 ){
+
 		}if(option == 5 ){
 			printf("Programa encerrado!");
 		}
-	}
-}
+}}
 
 int main(int argc, char *argv[]) {
 	menu();
 return 0;
 
 }
-
