@@ -124,6 +124,7 @@ int menu(){
 		}
 		if(option == 2 ){
 			// criando arquivos de destino para cada vocabulario.
+			FILE *vocabTotalrep;
 			FILE *vocab1rep;
         	FILE *vocab2rep;
         	FILE *vocab3rep;
@@ -136,19 +137,21 @@ int menu(){
         	FILE *vocab4;
         	FILE *vocab5;
         	
+        	FILE *origin;
         	FILE *Nota1;
         	FILE *Nota2;
         	FILE *Nota3;
         	FILE *Nota4;
         	FILE *Nota5;
         	
+        
         	vocab1 = fopen("files/vocab1.txt","w");
 			vocab2 = fopen("files/vocab2.txt","w");
 		    vocab3 = fopen("files/vocab3.txt","w");
 		    vocab4 = fopen("files/vocab4.txt","w");
 		    vocab5 = fopen("files/vocab5.txt","w");
 		
-
+			vocabTotalrep = fopen("files/vocabTotalrep.txt", "w");
             vocab1rep = fopen("files/vocab1rep.txt","w");
 			vocab2rep = fopen("files/vocab2rep.txt","w");
 		    vocab3rep = fopen("files/vocab3rep.txt","w");
@@ -160,6 +163,7 @@ int menu(){
 		    Nota3 = fopen("files/Nota3.txt","r");
 		    Nota4 = fopen("files/Nota4.txt","r");
 		    Nota5 = fopen("files/Nota5.txt","r");
+		    origin = fopen("files/text.csv", "r");
 			if(Nota1 == NULL){
         		printf("wasnt possible to access the archive.\n");
 			}if(Nota2 == NULL){
@@ -176,13 +180,16 @@ int menu(){
 			char *pointer;
 			char *pointer2;
 
-
+			
+						
 			while(fgets(reader, 100, Nota1) != NULL){
 				pointer=strtok(reader," ,.!?\"");
 				while(pointer){
 					if(strlen(pointer)>3){
 						fputs(pointer, vocab1rep);
 						fputs("\n", vocab1rep);
+						fputs(pointer, vocabTotalrep);
+						fputs("\n",vocabTotalrep);
 					}
 					pointer = strtok(NULL," ,.!?\"");	
 				}
@@ -193,6 +200,8 @@ int menu(){
 					if(strlen(pointer)>3){
 						fputs(pointer, vocab2rep);
 						fputs("\n", vocab2rep);
+						fputs(pointer, vocabTotalrep);
+						fputs("\n",vocabTotalrep);
 					}
 					
 					pointer = strtok(NULL," ,.!?\"");	
@@ -204,6 +213,8 @@ int menu(){
 					if(strlen(pointer)>3){
 						fputs(pointer, vocab3rep);
 						fputs("\n", vocab3rep);
+						fputs(pointer, vocabTotalrep);
+						fputs("\n",vocabTotalrep);
 					}
 					pointer = strtok(NULL," ,.!?\"");	
 				}
@@ -214,6 +225,8 @@ int menu(){
 					if(strlen(pointer)>3){
 						fputs(pointer, vocab4rep);
 						fputs("\n", vocab4rep);
+						fputs(pointer, vocabTotalrep);
+						fputs("\n",vocabTotalrep);
 					}
 					pointer = strtok(NULL," ,.!?\"");	
 				}
@@ -224,18 +237,22 @@ int menu(){
 					if(strlen(pointer)>3){
 						fputs(pointer, vocab5rep);
 						fputs("\n", vocab5rep);
+						fputs(pointer, vocabTotalrep);
+						fputs("\n",vocabTotalrep);
 						
 					}
 					pointer = strtok(NULL," ,.!?\"");	
 				}
 			}
 			//closing the open files.
+			fclose(origin);
 			fclose(Nota1);
             fclose(Nota2);
             fclose(Nota3);
             fclose(Nota4);
             fclose(Nota5);
             
+            fclose(vocabTotalrep);
             fclose(vocab1rep);
             fclose(vocab2rep);
             fclose(vocab3rep);
