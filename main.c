@@ -40,35 +40,35 @@ int menu(){
 
 
         if(option==1){
-        	printf("write the name of archive: ");
+        	printf("Escreva o nome do arquivo:\n ");
         	scanf("%s", &localArchive);
         	printf("%s \n", &localArchive);
 
         	FILE *origin;
-        	FILE *Nota1;
-        	FILE *Nota2;
-        	FILE *Nota3;
-        	FILE *Nota4;
-        	FILE *Nota5;
+        	FILE *Nota_1;
+        	FILE *Nota_2;
+        	FILE *Nota_3;
+        	FILE *Nota_4;
+        	FILE *Nota_5;
 
-            Nota1 = fopen("files/Nota1.txt","w");
-		    Nota2 = fopen("files/Nota2.txt","w");
-		    Nota3 = fopen("files/Nota3.txt","w");
-		    Nota4 = fopen("files/Nota4.txt","w");
-		    Nota5 = fopen("files/Nota5.txt","w");
+            Nota_1 = fopen("files/Nota_1.txt","w");
+		    Nota_2 = fopen("files/Nota_2.txt","w");
+		    Nota_3 = fopen("files/Nota_3.txt","w");
+		    Nota_4 = fopen("files/Nota_4.txt","w");
+		    Nota_5 = fopen("files/Nota_5.txt","w");
         	origin = fopen(localArchive, "r");
         	if(origin == NULL){
         		printf("wasnt possible to access the archive.\n");
 			}
-			if(Nota1 == NULL){
+			if(Nota_1 == NULL){
         		printf("wasnt possible to access the archive.\n");
-			}if(Nota2 == NULL){
+			}if(Nota_2 == NULL){
         		printf("wasnt possible to access the archive.\n");
-			}if(Nota3 == NULL){
+			}if(Nota_3 == NULL){
         		printf("wasnt possible to access the archive.\n");
-			}if(Nota4 == NULL){
+			}if(Nota_4 == NULL){
         		printf("wasnt possible to access the archive.\n");
-			}if(Nota5 == NULL){
+			}if(Nota_5 == NULL){
         		printf("wasnt possible to access the archive.\n");
 			}
 
@@ -88,92 +88,79 @@ int menu(){
 					review = *pointer;
 					//writing the information in the data;s
 					if(review=='1'){
-						fputs(reader, Nota1);
-						fputs("\n", Nota1);
+						fputs(reader, Nota_1);
+						fputs("\n", Nota_1);
 					}	
 					if(review=='2'){
-						fputs(reader, Nota2);
-						fputs("\n", Nota2);
+						fputs(reader, Nota_2);
+						fputs("\n", Nota_2);
 					}	
 					if(review=='3'){
-						fputs(reader, Nota3);
-						fputs("\n", Nota3);
+						fputs(reader, Nota_3);
+						fputs("\n", Nota_3);
 					}	
 					if(review=='4'){
-						fputs(reader, Nota4);
-						fputs("\n", Nota4);
+						fputs(reader, Nota_4);
+						fputs("\n", Nota_4);
 					}	
 					if(review=='5'){
-						fputs(reader, Nota5);
-						fputs("\n", Nota5);
+						fputs(reader, Nota_5);
+						fputs("\n", Nota_5);
 					}	
 				}
 				i++;
 			}
-			//closing the open files.
+			// Fechando os arquivos abertos.
 			fclose(origin);
-			fclose(Nota1);
-            fclose(Nota2);
-            fclose(Nota3);
-            fclose(Nota4);
-            fclose(Nota5);
-
-
-
+			fclose(Nota_1);
+            fclose(Nota_2);
+            fclose(Nota_3);
+            fclose(Nota_4);
+            fclose(Nota_5);
 
 		}
 		if(option == 2 ){
-			// criando arquivos de destino para cada vocabulario.
-			FILE *vocabTotalrep;
-			FILE *vocab1rep;
-        	FILE *vocab2rep;
-        	FILE *vocab3rep;
-        	FILE *vocab4rep;
-        	FILE *vocab5rep;
-        	
-        	FILE *vocab1;
-        	FILE *vocab2;
-        	FILE *vocab3;
-        	FILE *vocab4;
-        	FILE *vocab5;
+			// Criando arquivos de destino para cada vocabulario.
+			FILE *vocabulario_Totalrep;
+			FILE *vocabulario_1rep;
+        	FILE *vocabulario_2rep;
+        	FILE *vocabulario_3rep;
+        	FILE *vocabulario_4rep;
+        	FILE *vocabulario_5rep;
         	
         	FILE *origin;
-        	FILE *Nota1;
-        	FILE *Nota2;
-        	FILE *Nota3;
-        	FILE *Nota4;
-        	FILE *Nota5;
+        	FILE *Nota_1;
+        	FILE *Nota_2;
+        	FILE *Nota_3;
+        	FILE *Nota_4;
+        	FILE *Nota_5;
         	
-        
-        	vocab1 = fopen("files/vocab1.txt","w");
-			vocab2 = fopen("files/vocab2.txt","w");
-		    vocab3 = fopen("files/vocab3.txt","w");
-		    vocab4 = fopen("files/vocab4.txt","w");
-		    vocab5 = fopen("files/vocab5.txt","w");
 		
-			vocabTotalrep = fopen("files/vocabTotalrep.txt", "w");
-            vocab1rep = fopen("files/vocab1rep.txt","w");
-			vocab2rep = fopen("files/vocab2rep.txt","w");
-		    vocab3rep = fopen("files/vocab3rep.txt","w");
-		    vocab4rep = fopen("files/vocab4rep.txt","w");
-		    vocab5rep = fopen("files/vocab5rep.txt","w");
+			vocabulario_Totalrep = fopen("files/vocabulario_Totalrep.txt", "w");
+            vocabulario_1rep = fopen("files/vocabulario_1rep.txt","w");
+			vocabulario_2rep = fopen("files/vocabulario_2rep.txt","w");
+		    vocabulario_3rep = fopen("files/vocabulario_3rep.txt","w");
+		    vocabulario_4rep = fopen("files/vocabulario_4rep.txt","w");
+		    vocabulario_5rep = fopen("files/vocabulario_5rep.txt","w");
 		
-            Nota1 = fopen("files/Nota1.txt","r");
-		    Nota2 = fopen("files/Nota2.txt","r");
-		    Nota3 = fopen("files/Nota3.txt","r");
-		    Nota4 = fopen("files/Nota4.txt","r");
-		    Nota5 = fopen("files/Nota5.txt","r");
+            Nota_1 = fopen("files/Nota_1.txt","r");
+		    Nota_2 = fopen("files/Nota_2.txt","r");
+		    Nota_3 = fopen("files/Nota_3.txt","r");
+		    Nota_4 = fopen("files/Nota_4.txt","r");
+		    Nota_5 = fopen("files/Nota_5.txt","r");
 		    origin = fopen("files/text.csv", "r");
-			if(Nota1 == NULL){
-        		printf("wasnt possible to access the archive.\n");
-			}if(Nota2 == NULL){
-        		printf("wasnt possible to access the archive.\n");
-			}if(Nota3 == NULL){
-        		printf("wasnt possible to access the archive.\n");
-			}if(Nota4 == NULL){
-        		printf("wasnt possible to access the archive.\n");
-			}if(Nota5 == NULL){
-        		printf("wasnt possible to access the archive.\n");
+		    
+		    
+			if(Nota_1 == NULL){
+        		printf("Não foi possível acessar o arquivo.\n");
+			}if(Nota_2 == NULL){
+        		printf("Não foi possível acessar o arquivo.\n");
+			}if(Nota_3 == NULL){
+        		printf("Não foi possível acessar o arquivo.\n");
+			}if(Nota_4 == NULL){
+        		printf("Não foi possível acessar o arquivo.\n");
+			}if(Nota_5 == NULL){
+        		printf("Não foi possível acessar o arquivo.\n");
 			}
 
 			char reader[0];
@@ -182,91 +169,86 @@ int menu(){
 
 			
 						
-			while(fgets(reader, 100, Nota1) != NULL){
+			while(fgets(reader, 100, Nota_1) != NULL){
 				pointer=strtok(reader," ,.!?\"");
 				while(pointer){
 					if(strlen(pointer)>3){
-						fputs(pointer, vocab1rep);
-						fputs("\n", vocab1rep);
-						fputs(pointer, vocabTotalrep);
-						fputs("\n",vocabTotalrep);
+						fputs(pointer, vocabulario_1rep);
+						fputs("\n", vocabulario_1rep);
+						fputs(pointer, vocabulario_Totalrep);
+						fputs("\n",vocabulario_Totalrep);
 					}
 					pointer = strtok(NULL," ,.!?\"");	
 				}
 			}
-			while(fgets(reader, 100, Nota2) != NULL){
+			while(fgets(reader, 100, Nota_2) != NULL){
 				pointer=strtok(reader," ,.!?\"");
 				while(pointer){
 					if(strlen(pointer)>3){
-						fputs(pointer, vocab2rep);
-						fputs("\n", vocab2rep);
-						fputs(pointer, vocabTotalrep);
-						fputs("\n",vocabTotalrep);
+						fputs(pointer, vocabulario_2rep);
+						fputs("\n", vocabulario_2rep);
+						fputs(pointer, vocabulario_Totalrep);
+						fputs("\n",vocabulario_Totalrep);
 					}
 					
 					pointer = strtok(NULL," ,.!?\"");	
 				}
 			}
-			while(fgets(reader, 100, Nota3) != NULL){
+			while(fgets(reader, 100, Nota_3) != NULL){
 				pointer=strtok(reader," ,.!?\"");
 				while(pointer){
 					if(strlen(pointer)>3){
-						fputs(pointer, vocab3rep);
-						fputs("\n", vocab3rep);
-						fputs(pointer, vocabTotalrep);
-						fputs("\n",vocabTotalrep);
+						fputs(pointer, vocabulario_3rep);
+						fputs("\n", vocabulario_3rep);
+						fputs(pointer, vocabulario_Totalrep);
+						fputs("\n",vocabulario_Totalrep);
 					}
 					pointer = strtok(NULL," ,.!?\"");	
 				}
 			}
-			while(fgets(reader, 100, Nota4) != NULL){
+			while(fgets(reader, 100, Nota_4) != NULL){
 				pointer=strtok(reader," ,.!?\"");
 				while(pointer){
 					if(strlen(pointer)>3){
-						fputs(pointer, vocab4rep);
-						fputs("\n", vocab4rep);
-						fputs(pointer, vocabTotalrep);
-						fputs("\n",vocabTotalrep);
+						fputs(pointer, vocabulario_4rep);
+						fputs("\n", vocabulario_4rep);
+						fputs(pointer, vocabulario_Totalrep);
+						fputs("\n",vocabulario_Totalrep);
 					}
 					pointer = strtok(NULL," ,.!?\"");	
 				}
 			}
-			while(fgets(reader, 100, Nota5) != NULL){
+			while(fgets(reader, 100, Nota_5) != NULL){
 				pointer=strtok(reader," ,.!?\"");
 				while(pointer){
 					if(strlen(pointer)>3){
-						fputs(pointer, vocab5rep);
-						fputs("\n", vocab5rep);
-						fputs(pointer, vocabTotalrep);
-						fputs("\n",vocabTotalrep);
+						fputs(pointer, vocabulario_5rep);
+						fputs("\n", vocabulario_5rep);
+						fputs(pointer, vocabulario_Totalrep);
+						fputs("\n",vocabulario_Totalrep);
 						
 					}
 					pointer = strtok(NULL," ,.!?\"");	
 				}
-			}
-			//closing the open files.
+		}
+					// Fechando os arquivos aberto
 			fclose(origin);
-			fclose(Nota1);
-            fclose(Nota2);
-            fclose(Nota3);
-            fclose(Nota4);
-            fclose(Nota5);
+			fclose(Nota_1);
+            fclose(Nota_2);
+            fclose(Nota_3);
+            fclose(Nota_4);
+            fclose(Nota_5);
             
-            fclose(vocabTotalrep);
-            fclose(vocab1rep);
-            fclose(vocab2rep);
-            fclose(vocab3rep);
-            fclose(vocab4rep);
-            fclose(vocab5rep);
-            
-            fclose(vocab1);
-            fclose(vocab2);
-            fclose(vocab3);
-            fclose(vocab4);
-            fclose(vocab5);
-            
-		}if(option == 3 ){
+            fclose(vocabulario_Totalrep);
+            fclose(vocabulario_1rep);
+            fclose(vocabulario_2rep);
+            fclose(vocabulario_3rep);
+            fclose(vocabulario_4rep);
+            fclose(vocabulario_5rep);
 
+        
+		}if(option == 3 ){
+			
 		}if(option == 4 ){
 
 		}if(option == 5 ){
